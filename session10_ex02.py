@@ -19,14 +19,28 @@ while True :
 2. Chèn vào vị trí cụ thể
 """)
             choice_sub = input("Nhập lựa chọn (1-2): ").strip()
+            
             if choice_sub == "1":
-                add_sound_track = input("Nhập tên bài hát: ").strip()
+                while True:
+                    add_sound_track = input("Nhập tên bài hát: ").strip()
+                    if add_sound_track == "":
+                        print("Tên bài hát không được để trống!")
+                        continue
+                    break
+                    
                 sound_track.append(add_sound_track)
-                print(f"-> Thêm thành công bài hát '{add_sound_track}'!")
+                print(f"-> Thêm thành công bài hát: {add_sound_track}")
                 print(f"Số lượng bài hát hiện tại: {len(sound_track)}")
                 break
                 
             elif choice_sub == "2":
+                while True:
+                    add_sound_track = input("Nhập tên bài hát: ").strip()
+                    if add_sound_track == "":
+                        print("Tên bài hát không được để trống!")
+                        continue
+                    break
+                    
                 while True:
                     pos_str = input(f"Nhập số thứ tự muốn chèn (1 - {len(sound_track) + 1}): ").strip()
                     
@@ -35,17 +49,17 @@ while True :
                         valid_positions.append(str(num))
                         
                     if pos_str not in valid_positions:
-                        print("Vị trí không hợp lệ.")
+                        print(f"Vị trí không hợp lệ!")
+                        continue
                         
                     position = int(pos_str)
                     sound_track.insert(position - 1, add_sound_track)
                     print(f"-> Chèn thành công bài hát '{add_sound_track}' vào vị trí {position}!")
                     print(f"Số lượng bài hát hiện tại: {len(sound_track)}")
                     break
+                break
             else :
-                print("Vui lòng nhập lại(1-2)!")
-
-                
+                print("Vui lòng nhập lại (1-2)!")
 
     elif choice == '2' :
         if sound_track == [] :
@@ -64,7 +78,7 @@ while True :
         while True :
             print("""
 --- XÓA BÀI HÁT ---
-1. Xóa tên theo bài hát: 
+1. Xóa theo tên bài hát 
 2. Xóa theo số thứ tự
 """)
             choice_sub = input("Nhập lựa chọn (1-2): ").strip()
@@ -73,29 +87,30 @@ while True :
                 del_name = input("Nhập tên bài hát muốn xóa: ").strip()
                 if del_name in sound_track:
                     sound_track.remove(del_name)
-                    print(f"Đã xóa bài hát [{del_name}] khỏi danh sách.")
+                    print(f"Đã xóa bài hát [{del_name}] khỏi danh sách")
                 else:
-                    print("Không tìm thấy bài hát trong danh sách phát.")
+                    print("Không tìm thấy bài hát trong danh sách phát")
                 break
                 
             elif choice_sub == "2":
                 while True:
-                    del_idx_str = input(f"Nhập số thứ tự bài hát muốn xóa (1 đến {len(sound_track)}): ").strip()
+                    del_idx_str = input(f"Nhập số thứ tự bài hát muốn xóa: ").strip()
                     
                     valid_indexes = []
                     for num in range(1, len(sound_track) + 1):
                         valid_indexes.append(str(num))
                         
                     if del_idx_str not in valid_indexes:
-                        print("Vị trí không hợp lệ.")
+                        print(f"Vị trí không hợp lệ!")
                         continue
                         
                     del_index = int(del_idx_str)
                     removed_song = sound_track.pop(del_index - 1)
-                    print(f"Đã xóa bài hát [{removed_song}] khỏi danh sách.")
+                    print(f"Đã xóa bài hát [{removed_song}] khỏi danh sách")
                     break
+                break
             else :
-                print("Vui lòng nhập lại(1-2)!")
+                print("Vui lòng nhập lại (1-2)!")
 
     elif choice == '4':
         if sound_track == [] :
@@ -121,7 +136,7 @@ while True :
                     print(f"{i}. {sound}")
                 break
             else :
-                print("Vui lòng nhập lại(1-2)!")
+                print("Vui lòng nhập lại (1-2)!")
 
     elif choice == "5":
         print("Thoát chương trình!")
@@ -129,4 +144,3 @@ while True :
         
     else :
         print("Lựa chọn không hợp lệ, vui lòng nhập số nguyên")
-        
